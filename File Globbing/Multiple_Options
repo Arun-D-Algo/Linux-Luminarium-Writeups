@@ -1,0 +1,31 @@
+# Linux Luminarium
+# Module 5: File Globbing
+
+## Multiple Options for Tab Completion
+Consider the following situation:
+
+hacker@dojo:~$ ls
+flag  flamingo  flowers
+hacker@dojo:~$ cat f<TAB>
+There are multiple options! What happens?
+
+What happens varies based on the specific shell and its options. By default bash will auto-expand until the first point when there are multiple options (in this case, fl). When you hit tab a second time, it'll print out those options. Other shells and configurations, instead, will cycle through the options.
+
+This challenge has a /challenge/files directory with a bunch of files starting with pwncollege. Tab-complete from /challenge/files/p or so, and make your way to the flag!
+
+### Solve
+**Flag:** `pwn.college{UqxEAlTa5wX_6avkWJzc4HmuhLe.0FN0EzNxwiNyUDN0EzW}`
+
+This challenge was solved by using tab completion when multiple matching options exist. By repeatedly pressing the Tab key, the shell either extended the common prefix or displayed all possible matches, allowing the correct pwncollege-flag filename to be identified and selected to retrieve the flag.
+
+```bash
+hacker@globbing~multiple-options-for-tab-completion:~$ cd /challenge/files
+hacker@globbing~multiple-options-for-tab-completion:/challenge/files$ cat pwn
+pwn                    pwn-the-planet         pwncollege-flag        pwncollege-flyswatter
+pwn-college            pwncollege-family      pwncollege-flamingo    pwncollege-hacking
+hacker@globbing~multiple-options-for-tab-completion:/challenge/files$ cat pwncollege-flag
+pwn.college{QMlpgNl9yB7uQlYfTnrxYnMi7M9.0lN0EzNxwiNyUDN0EzW}
+```
+
+### New Learnings
+Learned how bash handles ambiguous tab completions by completing up to the longest common prefix and listing all valid options when ambiguity remains. This reinforced tab completion as a powerful discovery tool for navigating directories with similarly named files safely and efficiently.
