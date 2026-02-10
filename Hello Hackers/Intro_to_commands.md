@@ -5,7 +5,7 @@
 In this challenge, you will invoke your first command! When you type a command and hit enter, the command will be invoked.
 
 ### Solve
-**Flag:** pwn.college{Ugmi1jWmUS3mvGTrKmPbWrv4FGX.QX3YjM1wiNyUDN0EzW}
+**Flag:** `pwn.college{Ugmi1jWmUS3mvGTrKmPbWrv4FGX.QX3YjM1wiNyUDN0EzW}`
 
 Just put hello in the terminal, to get the flag, copied it to desktop clipboard, copied it again to my clipboard and pasted it to solve the problem.
 

@@ -14,7 +14,7 @@ What happens varies based on the specific shell and its options. By default bash
 This challenge has a /challenge/files directory with a bunch of files starting with pwncollege. Tab-complete from /challenge/files/p or so, and make your way to the flag!
 
 ### Solve
-**Flag:** `pwn.college{UqxEAlTa5wX_6avkWJzc4HmuhLe.0FN0EzNxwiNyUDN0EzW}`
+**Flag:** `pwn.college{QMlpgNl9yB7uQlYfTnrxYnMi7M9.0lN0EzNxwiNyUDN0EzW}`
 
 This challenge was solved by using tab completion when multiple matching options exist. By repeatedly pressing the Tab key, the shell either extended the common prefix or displayed all possible matches, allowing the correct pwncollege-flag filename to be identified and selected to retrieve the flag.
 

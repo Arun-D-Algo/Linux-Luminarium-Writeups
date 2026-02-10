@@ -7,7 +7,7 @@ Now, let's put the previous levels together! We put a few happy, but diversely-n
 HINT: Make sure to look at the names of the files in /challenge/files. Do you see any patterns that could help you make your glob?
 
 ### Solve
-**Flag:** `pwn.college{sokr3vWuPh87PlgQRseyj79-rAJ.0lM3kjNxwiNyUDN0EzW}`
+**Flag:** `pwn.college{0FHCYz0vyB2mOYaLvdbv4SaoYaC.QX1IDO0wiNyUDN0EzW}`
 
 This challenge was solved by combining bracket globbing with * to match filenames based on their starting letter. The glob [ecp]* expanded to exactly challenging, educational, and pwning, and passing this single short glob to /challenge/run successfully returned the flag.
 

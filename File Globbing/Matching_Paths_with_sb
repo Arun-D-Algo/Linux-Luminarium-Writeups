@@ -14,7 +14,7 @@ Look: /home/hacker/file_a /home/hacker/file_b
 Now it's your turn. Once more, we've placed a bunch of files in /challenge/files. Starting from your home directory, run /challenge/run with a single argument that bracket-globs into the absolute paths to the file_b, file_a, file_s, and file_h files!
 
 ### Solve
-**Flag:** `pwn.college{0op9QTpqpyF-VdbOO4mmZkuUhhe.QXzIDO0wiNyUDN0EzW}`
+**Flag:** `pwn.college{8rVodortH-yaWWspAIufUIxY5Fz.QX0IDO0wiNyUDN0EzW}`
 
 This challenge was solved by using bracket globbing within an absolute path. The pattern /challenge/files/file_[bash] expanded to the exact required files, and passing this single expanded argument to /challenge/run successfully revealed the flag.
 
