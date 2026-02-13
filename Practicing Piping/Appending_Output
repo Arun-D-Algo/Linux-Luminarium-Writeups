@@ -60,4 +60,4 @@ mode!
 ```
 
 ### New Learnings
-Learned how append-mode redirection (>>) differs from truncation-mode redirection (>), and why it is essential when preserving existing file contents. This reinforced how careful control of redirection behavior is crucial when aggregating output from multiple commands or writes.
+Learned how append mode redirection (>>) differs from truncation-mode redirection (>), and why it is essential when preserving existing file contents. This reinforced how careful control of redirection behavior is crucial when aggregating output from multiple commands or writes.
