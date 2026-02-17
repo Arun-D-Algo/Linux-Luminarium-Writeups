@@ -1,0 +1,47 @@
+# Linux Luminarium
+# Module 9: Processes and Jobs
+
+## Suspending Processes
+You have learned to interrupt processes with Ctrl-C, but there are less drastic measures you can use to get your terminal back! You can suspend processes to the background with Ctrl-Z. In this level, we'll explore how this works and, in the next level, we'll figure out how to resume those suspended processes!
+
+This level's run wants to see another copy of itself running and using the same terminal. How? Use the terminal to launch it, then suspend it, then launch another copy while the first is suspended!
+
+
+### Solve
+**Flag:** `pwn.college{4NGkG1riuShwHgWxGwVUcCwP0BX.QX1QDO0wiNyUDN0EzW}`
+
+This challenge focused on suspending a running process instead of terminating it. When /challenge/run was executed, it checked whether another copy of itself was already running in the same terminal. Since only one instance existed, it refused to provide the flag. By pressing Ctrl-Z, the running process was suspended and placed in a stopped state in the background rather than being killed. This left the first copy paused but still present in the process list. Launching /challenge/run again created a second active instance in the same terminal, satisfying the program’s condition and revealing the flag. The task demonstrated how suspended processes remain alive and visible to the system even though they are not actively executing.
+
+```bash
+hacker@processes~suspending-processes:~$ ps -efww | grep challenge
+hacker       351     338  0 12:03 pts/0    00:00:00 grep --color=auto challenge
+hacker@processes~suspending-processes:~$ /challenge/run 
+I'll only give you the flag if there's already another copy of me running in 
+this terminal... Let's check!
+
+UID          PID    PPID  C STIME TTY          TIME CMD
+root         352     338  0 12:03 pts/0    00:00:00 bash /challenge/run
+root         354     352  0 12:03 pts/0    00:00:00 ps -f
+
+I don't see a second me!
+
+To pass this level, you need to suspend me and launch me again! You can 
+background me with Ctrl-Z or, if you're not ready to do that for whatever 
+reason, just hit Enter and I'll exit!
+^Z
+[1]+  Stopped                    /challenge/run
+hacker@processes~suspending-processes:~$ /challenge/run
+I'll only give you the flag if there's already another copy of me running in 
+this terminal... Let's check!
+
+UID          PID    PPID  C STIME TTY          TIME CMD
+root         352     338  0 12:03 pts/0    00:00:00 bash /challenge/run
+root         359     338  0 12:03 pts/0    00:00:00 bash /challenge/run
+root         361     359  0 12:03 pts/0    00:00:00 ps -f
+
+Yay, I found another version of me! Here is the flag:
+pwn.college{4NGkG1riuShwHgWxGwVUcCwP0BX.QX1QDO0wiNyUDN0EzW}
+```
+
+### New Learnings
+Learned that Ctrl-Z sends the SIGTSTP signal, which suspends (stops) a foreground process instead of terminating it. Reinforced the difference between interrupting a process with Ctrl-C (which typically ends it) and suspending it with Ctrl-Z (which pauses it). Also strengthened understanding of how terminals manage foreground jobs and how multiple instances of the same program can coexist when one is suspended rather than killed.
