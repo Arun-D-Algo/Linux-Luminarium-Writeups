@@ -1,0 +1,26 @@
+# Linux Luminarium
+# Module 10: Untangling Users
+
+## Other users with su
+With no arguments, su will start a root shell (after authenticating with root's password). However, you can also give a username as an argument to switch to that user instead of root. For example:
+
+hacker@dojo:~$ su some-user
+Password:
+some-user@dojo:~$
+Awesome! In this level, you must switch to the zardus user and then run /challenge/run. Zardus' password is dont-hack-me. Good luck!
+
+
+### Solve
+**Flag:** `pwn.college{Y8nQXcQzzxUNhKrtBlLcUKMxcgq.QX1UDN1wiNyUDN0EzW}`
+
+The challenge required switching to another user account using the su command by providing the correct password. Since su is a setuid binary, it executed with elevated privileges and allowed authenticated user switching. After successful authentication, access to the target user’s environment enabled execution of the required program to obtain the flag.
+
+```bash
+hacker@users~becoming-root-with-su:~$ su
+Password: 
+root@users~becoming-root-with-su:/home/hacker# cat /flag
+pwn.college{Y8nQXcQzzxUNhKrtBlLcUKMxcgq.QX1UDN1wiNyUDN0EzW}
+```
+
+### New Learnings
+Learned that su can be used to switch to any user account when proper credentials are known. Learned that setuid binaries execute with the file owner’s privileges, allowing controlled user transitions. Learned that successful authentication grants access to that user’s permissions and environment, reinforcing how Linux enforces user isolation and privilege boundaries.
