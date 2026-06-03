@@ -14,18 +14,20 @@ hacker@dojo:~$
 Now, it's your turn! Go find the flag, hidden as a dot-prepended file in /.
 
 ### Solve
-**Flag:** `pwn.college{helloworld}`
+**Flag:** `pwn.college{kLsxkI557pdKAbrtPOBUo8pxCUj.QXwUDO0wiNyUDN0EzW}`
 
-type in your solve and your thought process behind solving the challenge. Include as much as info as possible. Use triple ticks for any bash commands and output you type on the terminal.
+This challenge hid the flag inside a dot-prefixed file located in the root directory (/). Since hidden files do not appear in standard ls output, the first step was to navigate to the root directory and use ls -a to reveal all files, including hidden ones. Among the listed entries was a file named .flag-12778221955773. Once the hidden file was identified, cat was used to read its contents and retrieve the flag successfully.
 
 ```bash
-command 1
-command 2
-pwn.college{helloworld}
+hacker@commands~hidden-files:~$ cd /
+hacker@commands~hidden-files:/$ ls -a
+.           .flag-12778221955773  challenge  home   media  opt   run   sys  var
+..          bin                   dev        lib    mnt    proc  sbin  tmp
+.dockerenv  boot                  etc        lib64  nix    root  srv   usr
+hacker@commands~hidden-files:/$ cat .flag-12778221955773
+pwn.college{kLsxkI557pdKAbrtPOBUo8pxCUj.QXwUDO0wiNyUDN0EzW}
 ```
 
 ### New Learnings
-Brief note on what you learned from the challenge
+Learned that Linux treats files beginning with a dot (.) as hidden files, causing them to be excluded from normal ls output. Reinforced the use of the -a flag with ls to display all files, including hidden ones. Also gained experience identifying hidden files within a directory and accessing them normally once their names are known.
 
-### References 
-Add any references or videos you used while solving the challenge.
