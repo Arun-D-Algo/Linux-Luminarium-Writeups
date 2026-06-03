@@ -40,18 +40,23 @@ Now it's your turn. I've hidden the flag in a random directory on the filesystem
 Several notes. First, there are other files named flag on the filesystem. Don't panic if the first one you try doesn't have the actual flag in it. Second, there're plenty of places in the filesystem that are not accessible to a normal user. These will cause find to generate errors, but you can ignore those; we won't hide the flag there! Finally, find can take a while; be patient!
 
 ### Solve
-**Flag:** `pwn.college{helloworld}`
+**Flag:** `pwn.college{835rKgRXGRIhExunD8WkUjtGqeH.QXyMDO0wiNyUDN0EzW}`
 
-type in your solve and your thought process behind solving the challenge. Include as much as info as possible. Use triple ticks for any bash commands and output you type on the terminal.
+This challenge required locating a file named flag hidden somewhere on the filesystem. To search the entire filesystem, find / -name flag was used, which recursively examined directories starting from the root (/). During the search, several "Permission denied" messages appeared for protected directories, but these could safely be ignored. The command returned multiple files named flag, so each potential match had to be checked manually. Reading /usr/share/perl5/Dpkg/Vendor/flag with cat revealed the correct flag and completed the challenge.
 
 ```bash
-command 1
-command 2
-pwn.college{helloworld}
+hacker@commands~finding-files:~$ find / -name flag
+find: ‘/etc/ssl/private’: Permission denied
+/usr/lib/python3/dist-packages/pwnlib/flag
+/usr/share/perl5/Dpkg/Vendor/flag
+find: ‘/var/cache/apt/archives/partial’: Permission denied
+find: ‘/var/cache/ldconfig’: Permission denied
+find: ‘/var/lib/apt/lists/partial’: Permission denied
+find: ‘/root’: Permission denied
+^C
+hacker@commands~finding-files:~$ cat /usr/share/perl5/Dpkg/Vendor/flag
+pwn.college{835rKgRXGRIhExunD8WkUjtGqeH.QXyMDO0wiNyUDN0EzW}
 ```
 
 ### New Learnings
-Brief note on what you learned from the challenge
-
-### References 
-Add any references or videos you used while solving the challenge.
+Learned how to use the find command to search for files across the filesystem based on specific criteria. Reinforced that find can start searching from any directory and that the -name option filters results by filename. Also gained experience dealing with permission-denied errors, understanding that inaccessible directories do not prevent find from continuing its search elsewhere.
