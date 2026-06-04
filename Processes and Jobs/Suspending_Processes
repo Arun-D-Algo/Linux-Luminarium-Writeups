@@ -23,7 +23,7 @@ UID          PID    PPID  C STIME TTY          TIME CMD
 root         352     338  0 12:03 pts/0    00:00:00 bash /challenge/run
 root         354     352  0 12:03 pts/0    00:00:00 ps -f
 
-I don't see a second me!
+I don't see a second me!    
 
 To pass this level, you need to suspend me and launch me again! You can 
 background me with Ctrl-Z or, if you're not ready to do that for whatever 
