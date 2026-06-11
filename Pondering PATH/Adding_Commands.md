@@ -23,7 +23,6 @@ Set a PATH that has the old directories plus a new entry for wherever you create
 Use read (again, refer to Shell Variables) to read /flag. Since read is a builtin functionality of bash, it is unaffected by PATH shenanigans.
 Now, go and win!
 
-
 ### Solve
 **Flag:** `pwn.college{oSmq5g5GXgcQiZzKy5G69666s83.QX2cjM1wiNyUDN0EzW}`
 
