@@ -25,19 +25,21 @@ Now, go and win!
 
 
 ### Solve
-**Flag:** `pwn.college{ItpjhUpVKdKPD1aTZNjvuohZzaD.01NzEzNxwiNyUDN0EzW}`
+**Flag:** `pwn.college{oSmq5g5GXgcQiZzKy5G69666s83.QX2cjM1wiNyUDN0EzW}`
 
-This challenge introduced the which command, which reveals the exact executable file that Bash will run when a command is entered. The challenge placed a win executable somewhere in the directories listed in PATH, but the flag itself was stored in the same directory as that executable. Using which win revealed the location of the win command. After navigating to its parent directory, the readable flag file was located and displayed with cat, revealing the flag.
+This challenge required creating a custom command named win and making it discoverable through the PATH variable. A shell script called win was created inside a custom directory and configured to print the flag using the absolute path to cat. After making the script executable, PATH was overwritten to include only the directory containing win. When /challenge/run attempted to execute win, the shell located the custom command through PATH, executed it, and revealed the flag.
 
 ```bash
-hacker@path~finding-commands:~$ which win
-/challenge/paths/29291/win
-hacker@path~finding-commands:~$ cd /challenge/paths/29291
-hacker@path~finding-commands:/challenge/paths/29291$ ls
-flag  win
-hacker@path~finding-commands:/challenge/paths/29291$ cat flag
-pwn.college{ItpjhUpVKdKPD1aTZNjvuohZzaD.01NzEzNxwiNyUDN0EzW}
+hacker@path~adding-commands:~$ mkdir scripts
+hacker@path~adding-commands:~$ nano scripts/win
+(#!/bin/bash
+/bin/cat /flag)
+hacker@path~adding-commands:~$ chmod +x scripts/win
+hacker@path~adding-commands:~$ PATH=/home/hacker/scripts
+hacker@path~adding-commands:~$ /challenge/run
+Invoking 'win'....
+pwn.college{oSmq5g5GXgcQiZzKy5G69666s83.QX2cjM1wiNyUDN0EzW}
 ```
 
 ### New Learnings
-Learned that the which command shows the exact executable that Bash finds when searching through PATH. Reinforced how command lookup works by checking directories in PATH from left to right until a matching executable is found. Also gained experience locating executables and using their filesystem location to discover related files stored in the same directory.
+Learned that users can create their own executable commands and expose them to the shell through the PATH variable. Reinforced that command lookup depends entirely on the directories listed in PATH, allowing custom programs to be executed by name. Also gained experience creating executable scripts, using absolute paths to avoid PATH dependency issues, and effectively extending the shell's command set.

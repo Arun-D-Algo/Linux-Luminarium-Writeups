@@ -19,17 +19,20 @@ All of the various redirection methods work: > for stdout, 2> for stderr, < for 
 In this level, we will practice piping (|) from your script to another program. Like before, you need to create a script that calls the /challenge/pwn command followed by the /challenge/college command, and pipe the output of the script into a single invocation of the /challenge/solve command!
 
 ### Solve
-**Flag:** `pwn.college{wfoEldD48tWaP99g2rO9oaPS7rY.QXxcDO0wiNyUDN0EzW}`
+**Flag:** `pwn.college{wg0t25xfA27MYZdpNQKY58JNwho.QX4ETO0wiNyUDN0EzW}`
 
-This challenge required running /challenge/first-success and /challenge/second such that the second command executes only if the first succeeds. By chaining them with &&, the shell ensured /challenge/second ran only after /challenge/first-success completed successfully. This satisfied the challenge condition, and the flag was displayed as expected.
+This challenge required creating a shell script that executed both /challenge/pwn and /challenge/college in sequence, then piping the script's combined output into a single invocation of /challenge/solve. A script was created containing the two required commands on separate lines. After making the script executable, its output was redirected through a pipe (|) into /challenge/solve. Since the challenge expected the outputs from both commands through a single input stream, piping the script's output satisfied the requirement and revealed the flag.
 
 ```bash
-hacker@chaining~your-first-shell-script:~$ echo "/challenge/pwn" > x.sh
-echo "/challenge/college" >> x.sh
-hacker@chaining~your-first-shell-script:~$ bash x.sh
-Great job, you've written your first shell script! Here is the flag:
-pwn.college{wfoEldD48tWaP99g2rO9oaPS7rY.QXxcDO0wiNyUDN0EzW}
+hacker@chaining~redirecting-script-output:~$ nano x.sh
+ (#!/bin/bash
+ /challenge/pwn
+ /challenge/college)
+hacker@chaining~redirecting-script-output:~$ chmod +x x.sh
+hacker@chaining~redirecting-script-output:~$ ./x.sh | /challenge/solve
+Correct! Here is your flag:
+pwn.college{wg0t25xfA27MYZdpNQKY58JNwho.QX4ETO0wiNyUDN0EzW}
 ```
 
 ### New Learnings
-Learned how the && operator enables conditional command execution based on exit status. Reinforced that a command runs only if the previous one succeeds (exit code 0). Also strengthened understanding of how Linux uses exit codes to control flow in command chaining, making workflows more reliable and dependent on successful execution.
+Learned that shell scripts behave like normal commands and can participate in redirection and piping operations. Reinforced that a script's standard output can be sent directly into another program using the pipe (|) operator. Also gained experience combining multiple command outputs through a script and forwarding them as a single input stream to another process.
