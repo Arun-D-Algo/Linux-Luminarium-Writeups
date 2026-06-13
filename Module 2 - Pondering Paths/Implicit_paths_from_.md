@@ -16,7 +16,7 @@ Imagine we want to access some file located at /tmp/a/b/my_file.
 If my cwd is /, then a relative path to the file is tmp/a/b/my_file.
 If my cwd is /tmp, then a relative path to the file is a/b/my_file.
 If my cwd is /tmp/a/b/c, then a relative path to the file is ../my_file. The .. refers to the parent directory.
-Let's try it here! You'll need to run /challenge/run using a relative path while having a current working directory of /. For this level, I'll give you a hint. Your relative path starts with the letter c 😊
+Let's try it here! You'll need to run /challenge/run using a relative path while having a current working directory of /. For this level, I'll give you a hint. Your relative path starts with the letter c 
 
 ### Solve
 **Flag:** `pwn.college{QWeeTzxrs2daGnFYgFTWfONvddE.QX5QTN0wiNyUDN0EzW}`
