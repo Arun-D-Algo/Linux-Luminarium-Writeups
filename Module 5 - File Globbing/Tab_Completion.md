@@ -8,6 +8,7 @@ A safer alternative when you are trying to specify a specific target is tab comp
 
 This challenge has copied the flag into /challenge/pwncollege, and you can freely cat that file. But you can't type the filename: we used some serious trickery to make sure that you must tab-complete it. Try it out!
 
+```
 hacker@dojo:~$ ls /challenge
 DESCRIPTION.md  pwncollege
 hacker@dojo:~$ cat /challenge/pwncollege
@@ -15,6 +16,7 @@ cat: /challenge/pwncollege: No such file or directory
 hacker@dojo:~$ cat /challenge/pwn<TAB>
 pwn.college{HECK YEAH}
 hacker@dojo:~$
+```
 When you hit that tab key, the name will expand and you'll be able to read the file. Good luck!
 
 ### Solve

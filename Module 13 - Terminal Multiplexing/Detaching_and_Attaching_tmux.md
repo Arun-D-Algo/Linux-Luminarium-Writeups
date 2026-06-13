@@ -8,11 +8,13 @@ tmux (terminal multiplexer) is screen's younger, more modern cousin. It does all
 
 So to detach from tmux, you press Ctrl-B followed by d.
 
+```
 hacker@dojo:~$ tmux
 [doing some work...]
 [Press Ctrl-B, then d]
 [detached (from session 0)]
 hacker@dojo:~$ 
+```
 The commands also differ:
 
 tmux ls - List sessions

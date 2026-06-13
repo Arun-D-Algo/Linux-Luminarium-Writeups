@@ -4,9 +4,11 @@
 ## Multiple Options for Tab Completion
 Consider the following situation:
 
+```
 hacker@dojo:~$ ls
 flag  flamingo  flowers
 hacker@dojo:~$ cat f<TAB>
+```
 There are multiple options! What happens?
 
 What happens varies based on the specific shell and its options. By default bash will auto-expand until the first point when there are multiple options (in this case, fl). When you hit tab a second time, it'll print out those options. Other shells and configurations, instead, will cycle through the options.

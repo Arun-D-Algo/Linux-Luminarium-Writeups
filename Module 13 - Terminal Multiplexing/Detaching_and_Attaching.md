@@ -8,14 +8,18 @@ Imagine you're working on something important over a remote connection, and your
 
 You can also detach on purpose, which we'll do in this challenge. You detach by pressing Ctrl-A, followed by d (for detach). This leaves your session running in the background while you return to your normal terminal.
 
+```
 hacker@dojo:~$ screen
 [doing some work...]
 [Press Ctrl-A, then d]
 [detached from 12345.pts-0.hostname]
 hacker@dojo:~$ 
+```
 To reattach, you can use the -r argument to screen:
 
+```
 hacker@dojo:~$ screen -r
+```
 For this challenge, you'll need to:
 
 Launch screen

@@ -6,6 +6,7 @@ When looking for changes between similar files, eyeballing them might not be the
 
 diff compares two files line by line and shows you exactly what's different between them. For example:
 
+```
 hacker@dojo:~$ cat file1
 hello
 world
@@ -17,10 +18,13 @@ hacker@dojo:~$ diff file1 file2
 < world
 ---
 > universe
+```
+
 The output tells us that line 2 changed (2c2), with world in the first file (<) being replaced by universe in the second file (>).
 
 Sometimes, when new lines are added, you'll see something like:
 
+```
 hacker@dojo:~$ cat old
 pwn
 hacker@dojo:~$ cat new
@@ -29,6 +33,7 @@ college
 hacker@dojo:~$ diff old new
 1a2
 > college
+```
 This tells us that after line 1 in the first file, the second file has an additional line (1a2 means "after line 1 of file1, add line 2 of file2").
 
 Now for your challenge! There are two files in /challenge:

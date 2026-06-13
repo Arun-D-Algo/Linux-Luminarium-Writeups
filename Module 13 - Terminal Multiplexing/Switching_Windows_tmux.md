@@ -13,7 +13,9 @@ Ctrl-B 0 through Ctrl-B 9 - Jump to window 0-9
 Ctrl-B w - See a nice window picker
 Tmux shows your windows at the bottom in a status bar that looks like:
 
+```
 [0] 0:bash* 1:bash
+```
 The * shows your current window, and each entry also shows the process that the window was created to run.
 
 We've created a tmux session with two windows:

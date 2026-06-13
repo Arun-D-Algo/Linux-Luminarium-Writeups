@@ -14,21 +14,25 @@ Hard links sound simpler to most people (case in point, I explained it in one se
 
 In this challenge, we will learn about symbolic links (also known as symlinks). Symbolic links are created with the ln command with the -s argument, like so:
 
+```
 hacker@dojo:~$ cat /tmp/myfile
 This is my file!
 hacker@dojo:~$ ln -s /tmp/myfile /home/hacker/ourfile
 hacker@dojo:~$ cat ~/ourfile
 This is my file!
 hacker@dojo:~$
+```
 You can see that accessing the symlink results in getting the original file contents! Also, you can see the usage of ln -s. Note that the original file path comes before the link path in the command!
 
 A symlink can be identified as such with a few methods. For example, the file command, which takes a filename and tells you what type of file it is, will recognize symlinks:
 
+```
 hacker@dojo:~$ file /tmp/myfile
 /tmp/myfile: ASCII text
 hacker@dojo:~$ file ~/ourfile
 /home/hacker/ourfile: symbolic link to /tmp/myfile
 hacker@dojo:~$
+```
 Okay, now you try it! In this level the flag is, as always, in /flag, but /challenge/catflag will instead read out /home/hacker/not-the-flag. Use the symlink, and fool it into giving you the flag!
 
 ### Solve

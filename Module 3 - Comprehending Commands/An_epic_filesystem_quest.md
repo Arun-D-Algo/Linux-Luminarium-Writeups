@@ -6,10 +6,12 @@ With your knowledge of cd, ls, and cat, we're ready to play a little game!
 
 We'll start it out in /. Normally:
 
+```
 hacker@dojo:~$ cd /
 hacker@dojo:/$ ls
 bin   challenge  etc   home  lib32  libx32  mnt  proc  run   srv  tmp  var
 boot  dev        flag  lib   lib64  media   opt  root  sbin  sys  usr
+```
 That's a lot of contents! One day, you will be quite familiar with them, but already, you might recognize the flag file and the challenge directory.
 
 In this challenge, I have hidden the flag! Here, you will use ls and cat to follow my breadcrumbs and find it! Here's how it'll work:

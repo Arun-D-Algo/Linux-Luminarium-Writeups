@@ -4,6 +4,7 @@
 ## Reading Manuals
 This level introduces the man command. man is short for manual, and will display (if available) the manual of the command you pass as an argument. For example, let's say we wanted to learn about the yes command (yes, this is a real command):
 
+```
 hacker@dojo:~$ man yes
 This will display the manual page for yes, which will look something like this:
 
@@ -42,8 +43,11 @@ SEE ALSO
        or available locally via: info '(coreutils) yes invocation'
 
 GNU coreutils 8.32               February 2022                          YES(1)
+```
+
 The important sections are:
 
+```
 NAME(1)                           CATEGORY                          NAME(1)
 
 NAME
@@ -66,6 +70,7 @@ SEE ALSO
 	Other man pages or online resources that might be useful.
 
 COLLECTION                        DATE                          NAME(1)
+```
 You can scroll around the manpage with your arrow keys and PgUp/PgDn. When you're done reading the manpage, you can hit q to quit.
 
 Manpages are stored in a centralized database. If you're curious, this database lives in the /usr/share/man directory, but you never need to interact with it directly: you just query it using the man command. The arguments to the man command aren't file paths, but just the names of the entries themselves (e.g., you run man yes to look up the yes manpage, rather than man /usr/bin/yes, which would be the actual path to the yes program but would result in man displaying garbage).
