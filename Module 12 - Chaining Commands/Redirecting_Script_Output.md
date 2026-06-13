@@ -6,6 +6,7 @@ Let's try something a bit trickier! You've piped output between programs with |,
 
 As far as the shell is concerned, your script is just another command. That means you can redirect its input and output just like you did for commands in the Piping module! For example, you can write it to a file:
 
+```
 hacker@dojo:~$ cat script.sh
 echo PWN
 echo COLLEGE
@@ -14,6 +15,7 @@ hacker@dojo:~$ cat output
 PWN
 COLLEGE
 hacker@dojo:~$
+```
 All of the various redirection methods work: > for stdout, 2> for stderr, < for stdin, >> and 2>> for append-mode redirection, >& for redirecting to other file descriptors, and | for piping to another command.
 
 In this level, we will practice piping (|) from your script to another program. Like before, you need to create a script that calls the /challenge/pwn command followed by the /challenge/college command, and pipe the output of the script into a single invocation of the /challenge/solve command!

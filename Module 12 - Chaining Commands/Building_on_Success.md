@@ -8,17 +8,21 @@ The && operator allows you to run a second command only if the first command suc
 
 Here's the syntax:
 
+```
 hacker@dojo:~$ command1 && command2
+```
 This means: "Run command1, and IF it succeeds, then run command2."
 
 Some examples:
 
+```
 hacker@dojo:~$ touch /home/hacker/file && echo "this will run"
 success
 this will run
 hacker@dojo:~$ touch /file && echo "this will NOT run"
 touch: cannot touch '/file': Permission denied
 hacker@dojo:~$
+```
 That second invocation of touch failed because the hacker user does not have write access to /file, so the echo did not run.
 
 In this challenge, you need to chain the programs /challenge/first-success and /challenge/second using the && operator. Try running each command separately first to see what happens (which is that you will not get the flag). But if you chain them with &&, the flag will appear!

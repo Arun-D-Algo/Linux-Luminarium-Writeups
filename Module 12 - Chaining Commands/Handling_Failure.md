@@ -6,16 +6,20 @@ You just learned about the && operator, which runs the second command only if th
 
 Here's the syntax:
 
+```
 hacker@dojo:~$ command1 || command2
+```
 This means: "Run command1, and IF it fails, then run command2."
 
 Some examples:
 
+```
 hacker@dojo:~$ touch /file || echo "touch failed, so this runs"
 touch: cannot touch '/file': Permission denied
 touch failed, so this runs
 hacker@dojo:~$ touch /home/hacker/file || echo "this will NOT run"
 hacker@dojo:~$
+```
 The || operator is super useful for providing fallback commands or error handling!
 
 In this challenge, you need to chain /challenge/first-failure and /challenge/second using the || operator. Go for it!

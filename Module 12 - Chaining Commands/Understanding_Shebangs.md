@@ -10,15 +10,19 @@ There are a bunch of different types of programs, but if the program file starts
 
 Consider this shell script:
 
+```
 #!/bin/bash
 
 echo "Hello Hackers!"
+```
 This can be executed as:
 
+```
 hacker@dojo:~$ chmod a+x script.sh
 hacker@dojo:~$ ./script.sh
 Hello Hackers!
 hacker@dojo:~$
+```
 When ./script.sh was executed, Linux opened the file, read the first line, extracted /bin/bash as the interpreter, and executed /bin/bash ./script.sh to launch the script!
 
 Note, the shebang line must be the VERY FIRST line of the file - no blank lines or spaces before it!
