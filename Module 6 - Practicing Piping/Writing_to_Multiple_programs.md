@@ -71,7 +71,6 @@ hacker@dojo:~$
 ```
 That's just silly! The lesson here is that, while Process Substitution is a powerful tool in your toolbox, it's a very specialized tool; don't use it for everything!
 
-
 ### Solve
 **Flag:** `pwn.college{w67QKV2k2E6ZTt-J9zIhaFMe4le.QXwgDN1wiNyUDN0EzW}`
 

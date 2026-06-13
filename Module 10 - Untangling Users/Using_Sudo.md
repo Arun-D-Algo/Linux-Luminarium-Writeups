@@ -6,18 +6,22 @@ In the olden days, a typical Linux system had a root password that administrator
 
 Unlike su, which defaults to launching a shell as a specified user, sudo defaults to running a command as root:
 
+```
 hacker@dojo:~$ whoami
 hacker
 hacker@dojo:~$ sudo whoami
 root
 hacker@dojo:~$
+```
 Or, more relevant to getting flags:
 
+```
 hacker@dojo:~$ grep hacker /etc/shadow
 grep: /etc/shadow: Permission denied
 hacker@dojo:~$ sudo grep hacker /etc/shadow
 hacker:$6$Xro.e7qB3Q2Jl2sA$j6xffIgWn9xIxWUeFzvwPf.nOH2NTWNJCU5XVkPuONjIC7jL467SR4bXjpVJx4b/bkbl7kyhNquWtkNlulFoy.:19921:0:99999:7:::
 hacker@dojo:~$
+```
 Unlike su, which relies on password authentication, sudo checks policies to determine whether the user is authorized to run commands as root. These policies are defined in /etc/sudoers, and though it's mostly out of scope for our purposes, there are plenty of resources for learning about this!
 
 So, the world has moved to sudo and has (for the purposes of system administration) left su behind. In fact, even pwn.college's Privileged Mode works by giving you sudo access to elevate privileges!
@@ -25,7 +29,6 @@ So, the world has moved to sudo and has (for the purposes of system administrati
 In this level, we will give you sudo access, and you will use it to read the flag. Nice and easy!
 
 NOTE: After this level, we will enable Privileged Mode! When you launch a challenge in Privileged Mode (by clicking the Privileged button instead of the Start button), the resulting container will give you full sudo access to allow you to introspect and debug to your heart's content, but of course with a placeholder flag.
-
 
 ### Solve
 **Flag:** `pwn.college{8euMueoWy9nqObQzvZY_Ttjc0QK.QX4UDN1wiNyUDN0EzW}`

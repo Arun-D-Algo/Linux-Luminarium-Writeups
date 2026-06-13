@@ -6,6 +6,7 @@ Every shell command, including every program and every builtin, exits with an ex
 
 You can access the exit code of the most recently-terminated command using the special ? variable (don't forget to prepend it with $ to read its value!):
 
+```
 hacker@dojo:~$ touch test-file
 hacker@dojo:~$ echo $?
 0
@@ -14,10 +15,10 @@ touch: cannot touch '/test-file': Permission denied
 hacker@dojo:~$ echo $?
 1
 hacker@dojo:~$
+```
 As you can see, commands that succeed typically return 0 and commands that fail typically return a non-zero value, most commonly 1 but sometimes an error code that identifies a specific failure mode.
 
 In this challenge, you must retrieve the exit code returned by /challenge/get-code and then run /challenge/submit-code with that error code as an argument. Good luck!
-
 
 ### Solve
 **Flag:** `pwn.college{8IaDtWjIelpehBUyUa_Som2zlV_.QX5YDO1wiNyUDN0EzW}`

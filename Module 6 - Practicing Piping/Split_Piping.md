@@ -17,7 +17,6 @@ Go get the flag!
 
 BONUS: For some added difficulty, find a solution that doesn't use |.
 
-
 ### Solve
 **Flag:** `pwn.college{Mf4tXjBVjPiOfM4qnFEdGWzbUJA.QXxQDM2wiNyUDN0EzW}`
 

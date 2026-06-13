@@ -6,7 +6,6 @@ You have learned to interrupt processes with Ctrl-C, but there are less drastic 
 
 This level's run wants to see another copy of itself running and using the same terminal. How? Use the terminal to launch it, then suspend it, then launch another copy while the first is suspended!
 
-
 ### Solve
 **Flag:** `pwn.college{4NGkG1riuShwHgWxGwVUcCwP0BX.QX1QDO0wiNyUDN0EzW}`
 

@@ -10,19 +10,22 @@ In this challenge, we will cover the older one, su (the substitute user command)
 
 su is a setuid binary:
 
+```
 hacker@dojo:~$ ls -l /usr/bin/su
 -rwsr-xr-x 1 root root 232416 Dec 1 11:45 /usr/bin/su
 hacker@dojo:~$
+```
 Because it has the SUID bit set, su runs as root. Running as root, it can start a root shell! Of course, su is discerning: before allowing the user to elevate privileges to root, it checks to make sure that the user knows the root password:
 
+```
 hacker@dojo:~$ su
 Password: 
 su: Authentication failure
 hacker@dojo:~$
+```
 This check against the root password is what obsoletes su. Modern systems very rarely have root passwords, and different mechanisms (that we will learn later) are used to grant administrative access.
 
 But THIS challenge (and only this challenge) does have a root password. That password is hack-the-planet, and you must provide it to su to become root! Go do that, and read the flag!
-
 
 ### Solve
 **Flag:** `pwn.college{Y8nQXcQzzxUNhKrtBlLcUKMxcgq.QX1UDN1wiNyUDN0EzW}`

@@ -16,7 +16,6 @@ Sometimes, the only way to filter to just the data you want is to filter out the
 
 Use grep -v to filter out all the lines containing "DECOY" and reveal the real flag!
 
-
 ### Solve
 **Flag:** `pwn.college{U9pktG9iRdYw5A-I_9F0684H9Q9.0FOxEzNxwiNyUDN0EzW}`
 

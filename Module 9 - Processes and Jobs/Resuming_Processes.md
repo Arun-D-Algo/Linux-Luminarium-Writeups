@@ -6,7 +6,6 @@ Usually, when you suspend processes, you'll want to resume them at some point. O
 
 Go try it out! This challenge's run needs you to suspend it, then resume it. Good luck!
 
-
 ### Solve
 **Flag:** `pwn.college{IT3qyt2bXkdghE6THi8tJq6h12k.QX2QDO0wiNyUDN0EzW}`
 

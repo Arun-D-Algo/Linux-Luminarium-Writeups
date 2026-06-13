@@ -47,7 +47,6 @@ This challenge will be a simple introduction to FIFOs. You'll need to create a /
 
 HINT: The blocking behavior of FIFOs makes it hard to solve this challenge in a single terminal. You may want to use the Desktop or VSCode mode for this challenge so that you can launch two terminals.
 
-
 ### Solve
 **Flag:** `pwn.college{8Wea8WJNN3vgd3NlMgc8CF0Sj4-.01MzMDOxwiNyUDN0EzW}`
 

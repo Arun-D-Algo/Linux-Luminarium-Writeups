@@ -12,7 +12,6 @@ The shell has a >& operator, which redirects a file descriptor to another file d
 
 Try it now! Like the last level, this level will overwhelm you with output, but this time on standard error. grep through it to find the flag!
 
-
 ### Solve
 **Flag:** `pwn.college{IFBEcDEujeMXOA6b3S5sydZ1HNF.QX1ATO0wiNyUDN0EzW}`
 

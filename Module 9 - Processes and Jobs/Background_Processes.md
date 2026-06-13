@@ -8,22 +8,27 @@ This level's run wants to see another copy of itself running, not suspended, and
 
 ARCANUM: If you're interested in some deeper details, check out how to view the differences between suspended and backgrounded properties! Allow me to demonstrate. First, let's suspend a sleep:
 
+```
 hacker@dojo:~$ sleep 1337
 ^Z
 [1]+  Stopped                 sleep 1337
 hacker@dojo:~$
+```
 The sleep process is now suspended in the background. We can see this with ps by enabling the stat column output with the -o option:
 
+```
 hacker@dojo:~$ ps -o user,pid,stat,cmd
 USER         PID STAT CMD
 hacker       702 Ss   bash
 hacker       762 T    sleep 1337
 hacker       782 R+   ps -o user,pid,stat,cmd
 hacker@dojo:~$ 
+```
 See that T? That means that the process is suspended due to our Ctrl-Z. The S in bash's STAT column means that bash is sleeping while waiting for input. The R in ps's column means that it's actively running, and the + means that it's in the foreground!
 
 Watch what happens when we resume sleep in the background:
 
+```
 hacker@dojo:~$ bg
 [1]+ sleep 1337 &
 hacker@dojo:~$ ps -o user,pid,stat,cmd
@@ -32,8 +37,8 @@ hacker       702 Ss   bash
 hacker       762 S    sleep 1337
 hacker      1224 R+   ps -o user,pid,stat,cmd
 hacker@dojo:~$
+```
 Boom! The sleep now has an S. It's sleeping while, well, sleeping, but it's not suspended! It's also in the background and thus doesn't have the +.
-
 
 ### Solve
 **Flag:** `pwn.college{YpZOJaKiSkc0fgfAy7igIlp_1aM.QX3QDO0wiNyUDN0EzW}`

@@ -29,7 +29,6 @@ Commands succeeded!
 ```
 Now, you try it! This process' /challenge/pwn must be piped into /challenge/college, but you'll need to intercept the data to see what pwn needs from you!
 
-
 ### Solve
 **Flag:** `pwn.college{AhHe2GZ2BOS9Ko16m8Ulo2ChGD6.QXxITO0wiNyUDN0EzW}`
 

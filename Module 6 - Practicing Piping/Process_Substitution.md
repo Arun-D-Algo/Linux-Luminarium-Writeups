@@ -39,7 +39,6 @@ Now for your challenge! Recall what you learned in the diff challenge from Compr
 
 Use process substitution with diff to compare the outputs of these two programs and find your flag!
 
-
 ### Solve
 **Flag:** `pwn.college{UvjS3gc4uXSWl_wHQfwnyv_dhw6.0lNwMDOxwiNyUDN0EzW}`
 

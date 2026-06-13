@@ -4,11 +4,12 @@
 ## Deleting Characters
 tr can also translate characters to nothing (i.e., delete them). This is done via a -d flag and an argument of what characters to delete:
 
+```
 hacker@dojo:~$ echo PAWN | tr -d A
 PWN
 hacker@dojo:~$
+```
 Pretty simple! Now you give it a try. In the output of /challenge/run, I'll intersperse some decoy characters (specifically: ^ and %) among the flag characters. Use tr -d to remove them!
-
 
 ### Solve
 **Flag:** `pwn.college{cdWleMoln5gQsZSMTjiNdldYpdd.0FNxEzNxwiNyUDN0EzW}`

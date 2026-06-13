@@ -14,7 +14,6 @@ newword - the replacement for oldword
 
 In this challenge, /challenge/run will print out the flag, but between each character there will be the string "FAKEFLAG". Your job is to filter out the garbage data from the flag. Good luck!
 
-
 ### Solve
 **Flag:** `pwn.college{4BsjpQZOmN8DMbrnDV6WsdMQCQw.01NxQTMywiNyUDN0EzW}`
 
