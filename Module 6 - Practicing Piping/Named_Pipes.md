@@ -6,12 +6,14 @@ You've learned about pipes using |, and you've seen that process substitution cr
 
 You create a FIFO using the mkfifo command:
 
+```
 hacker@dojo:~$ mkfifo my_pipe
 hacker@dojo:~$ ls -l my_pipe
 prw-r--r-- 1 hacker hacker 0 Jan 1 12:00 my_pipe
 hacker@dojo:~$ ls -l some_file
 -rw-r--r-- 1 hacker hacker 0 Jan 1 12:00 some_file
 hacker@dojo:~$
+```
 Notice the p at the beginning of the permissions - that indicates it's a pipe! That's markedly different than the - that's at the beginning of normal files, such as some_file in the above example.
 
 Unlike the automatic named pipes from process substitution:
@@ -22,13 +24,17 @@ Any process can write to them by path (e.g., echo hi > my_pipe)
 You can see them with ls and examine them like files
 One problem with FIFOs is that they'll "block" any operations on them until both the read side of the pipe and the write side of the pipe are ready. For example, consider this:
 
+```
 hacker@dojo:~$ mkfifo myfifo
 hacker@dojo:~$ echo pwn > myfifo
+```
 To service echo pwn > myfifo, bash will open the myfifo file in write mode. However, this operation will hang until something also opens the file in read mode (thus completing the pipe). That can be in a different console:
 
+```
 hacker@dojo:~$ cat myfifo
 pwn
 hacker@dojo:~$
+```
 What happened here? When we ran cat myfifo, the pipe had both sides of the connection all set, and unblocked, allowing echo pwn > myfifo to run, which sent pwn into the pipe, where it was read by cat.
 
 Of course, this can somewhat be done by normal files: you've learned how to echo stuff into them and cat them out. Why use a FIFO instead? Here are key differences:
